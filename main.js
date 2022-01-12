@@ -13,9 +13,14 @@ module.exports.loop = function () {
 
     cleanup.clearMemory();
 
-    spawn.newCreep(names.upgraderRole, 1, [WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE]);
-    spawn.newCreep(names.builderRole, 7, [WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE]);
-    spawn.newCreep(names.harvesterRole, 2, [WORK, WORK,WORK, CARRY, CARRY, CARRY, MOVE]);
+    /*var totalEnergy = Game.rooms[names.room].energyCapacityAvailable;
+    var builderBody = Array(0|totalEnergy / 200).fill(WORK)
+        .concat(Array(0|totalEnergy / 150).fill(MOVE))
+        .concat(Array(0|totalEnergy / 300).fill(CARRY));*/
+
+    spawn.newCreep(names.builderRole, 3, [WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE]);
+    spawn.newCreep(names.upgraderRole, 9, [WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE]);
+    spawn.newCreep(names.harvesterRole, 3, [WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE]);
 
     spawn.visualize();
 
@@ -27,10 +32,10 @@ module.exports.loop = function () {
             roleHarvester.run(creep, 0);
         }
         if (creep.memory.role == names.upgraderRole) {
-            roleUpgrader.run(creep, 0);
+            roleUpgrader.run(creep, 1);
         }
         if (creep.memory.role == names.builderRole) {
-            roleBuilder.run(creep, 1);
+            roleBuilder.run(creep, 0);
         }
     }
 }
