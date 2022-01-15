@@ -3,14 +3,17 @@ var names = require('names');
 var spawn = {
     newCreep: function (role, maxCount, body) {
         var creeps = _.filter(Game.creeps, (creep) => creep.memory.role == role);
-        console.log(role+' '+creeps.length)
+        var creepsSrc0 = _.filter(Game.creeps, (creep) => creep.memory.srcIx == 0);
+        var creepsSrc1 = _.filter(Game.creeps, (creep) => creep.memory.srcIx == 1);
+        console.log(role + ' ' + creeps.length)
         if (creeps.length < maxCount) {
             var newName = role + Game.time;
             //console.log('spawning '+ role)
+            var srcix = 0 + ((2 * creepsSrc0.length) > creepsSrc1.length);
             Game.spawns[names.spawn].spawnCreep(
                 body,
                 newName,
-                { memory: { role: role } });
+                { memory: { role: role, srcIx: srcix } });
         }
     },
 

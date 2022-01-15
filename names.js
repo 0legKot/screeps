@@ -3,6 +3,7 @@ var names = {
     harvesterRole: 'harvester',
     upgraderRole: 'upgrader',
     builderRole: 'builder',
-    room: 'E51S32',
+    attackerRole: 'attacker',
+    room: 'E54N39',
 }
 module.exports = names;
